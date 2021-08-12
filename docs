@@ -1,1 +1,9 @@
 https://raw.githubusercontent.com/everyleaf/el-training/master/docs/el-training.md 
+userテーブル
+:id
+:name 
+
+listテーブル
+:id
+:use_id
+:content

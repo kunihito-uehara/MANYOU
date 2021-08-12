@@ -197,7 +197,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
-  rails (~> 5.2.5)
+  rails (~> 5.2.6)
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
@@ -211,4 +211,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   2.2.21
+   2.2.25
