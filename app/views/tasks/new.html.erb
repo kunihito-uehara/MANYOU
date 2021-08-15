@@ -11,7 +11,9 @@
 <% end %>
 
 <%= form_for(@task) do |f| %>
-    <div><%= f.label :タスク %></div>
+    <div><%= f.label :タスク名 %></div>
+    <div><%= f.text_field :title %></div>
+    <div><%= f.label :内容 %></div>
     <div><%= f.text_field :content %></div>
     <div><%= f.submit %></div>
 <% end %>

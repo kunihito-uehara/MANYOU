@@ -47,8 +47,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rspec-rails', '~> 3.8'
-  gem 'factory_bot_rails'
   gem 'spring-commands-rspec'
   gem 'launchy'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -63,6 +61,8 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'webdrivers'
   gem 'capybara', '>= 2.15'
+  gem 'rspec-rails', '~> 3.8'
+  gem 'factory_bot_rails'
   
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
