@@ -1,8 +1,6 @@
-#モデル名
-#task
+#task h1
 
-#タスクテーブル
-
-#カラム名-データ型
-#title #string
-#content #string
+| column  | type   |
+| ------- | ------ |
+| title   | string |
+| content | string |
