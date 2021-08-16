@@ -1,3 +1,8 @@
-# 以下　モデル名、カラム名、データ型
+#モデル名
+#task
 
-# Task content string
+#タスクテーブル
+
+#カラム名-データ型
+#title #string
+#content #string
