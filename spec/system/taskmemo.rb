@@ -16,8 +16,8 @@ RSpec.describe 'タスク管理機能', type: :system do
       # visitした（遷移した）page（タスク一覧ページ）に「task」という文字列が
       # have_contentされているか（含まれているか）ということをexpectする（確認・期待する）
       #expect(page).to have_content 'task'
-
       #click_on '追加'
+      
       fill_in "task[title]", with: 'タイトル'
       fill_in "task[content]", with: 'あいうえお'
       click_on '登録する'
