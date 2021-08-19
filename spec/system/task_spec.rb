@@ -6,21 +6,10 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
-        # テストで使用するためのタスクを作成
-      #FactoryBot.create(:task, content: 'task')
-      #FactoryBot.create(:second_task)
-      #FactoryBot.create(:third_task)
-      #FactoryBot.create(:fourth_task)
-      # タスク一覧ページに遷移
       visit new_task_path #タスクページへ行く
-      # visitした（遷移した）page（タスク一覧ページ）に「task」という文字列が
-      # have_contentされているか（含まれているか）ということをexpectする（確認・期待する）
-      #expect(page).to have_content 'task'
-
-      #click_on '追加'
       fill_in "task[title]", with: 'タイトル'
       fill_in "task[content]", with: 'あいうえお'
-      click_on 'Create Task'
+      click_on '登録する'
       expect(page).to have_content 'タイトル'
       expect(page).to have_content 'あいうえお'
       # expectの結果が true ならテスト成功、false なら失敗として結果が出力される
@@ -58,6 +47,16 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content 'たちつてと'
         expect(page).not_to have_content 'かきくけこ'
         end
+    end
+  end
+
+  context 'タスクが作成日時の降順に並んでいる場合' do
+    it '新しいタスクが一番上に表示される' do
+      # ここに実装する
+      task = FactoryBot.create(:task, title: 'なにぬねの')
+      visit tasks_path
+      task_list = all('.task_row')
+      expect(task_list[0]).to have_content 'なにぬねの'     
     end
   end
 end

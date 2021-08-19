@@ -1,23 +1,29 @@
 <p id="notice"><%= notice %></p>
 
 <h1>タスク一覧画面</h1>
+<%= form_with(model: @task, method: :get, local: true, ) do |form| %>
+<% end %>
+
 <table>
-  <thead>
+  <tr>
+    <th>タスク名</th>
+    <th>内容</th>
+    <%# <th>終了期限</th>
+    <th>ステータス</th>
+    <th>優先順位</th> %>
+  </tr>
+<% @tasks.each do |task| %>
     <tr>
-      <th>タスク名</th>
-      <th>内容</th>
+      <td class="task_row"><%= task.title %></td>
+      <td　class="task_row"><%= task.content %></td>
+      <%# <td class="expiration_date"><%= l(task.expiration_date, format: :long) %>
+      <%# <td class="status"><%= task.status %>
+      <%# <td class="priority"><%= task.priority %>
+      <td><%= link_to '詳細', task_path(task.id), class:"btn btn-primary btn-xs" %></td>
+      <td><%= link_to "編集", edit_task_path(task.id), class:"btn btn-success btn-xs" %></td>
+      <td><%= link_to '削除', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }, class:"btn btn-danger btn-xs" %></td>
     </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.content %></td>
-        <td><%= link_to '確認', task %></td>
-        <td><%= link_to '編集', edit_task_path(task) %></td>
-        <td><%= link_to '削除', task_path(task), method: :delete,data: { confirm: '削除しますか？' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <% end %>
 </table>
 <h4><%= link_to "追加",new_task_path %></h4>
+<%# <p><%= paginate @tasks %></p> 

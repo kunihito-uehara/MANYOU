@@ -1,7 +1,5 @@
-<h1>タスク編集</h1>
-<%= form_for(@task) do |f| %>
-  <div><%= f.label :タスク %></div>
-  <div><%= f.text_field :content %></div>
-  <div><%= f.submit %></div>
-<% end %>
-<%= link_to '戻る', tasks_path %>
+<h2>タスク編集画面</h2>
+
+<%= render 'form', task: @task %>
+
+<h3><%= link_to 'タスク一覧', tasks_path %></h3>
