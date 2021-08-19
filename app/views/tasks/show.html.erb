@@ -1,10 +1,8 @@
 <h1>詳細画面</h1>
-<p id="notice"><%= notice %></p>
-  <strong>タスク名:</strong>
-  <%= @task.title %>
-  
-  <strong>内容:</strong>
-  <%= @task.content %>
-</p>
+<p>タスク名: <%= @task.title %></p>
+<p>内容: <%= @task.content %></p>
+<%# <p>作成日時: <%= l(@task.created_at, format: :long) %>
+<%# <p>終了期限: <%= l(@task.expiration_date, format: :long) %>
+<%# <p>ステータス: <%= @task.status %>
 <%= link_to '編集する', edit_task_path(@task) %> |
 <%= link_to '一覧へ戻る', tasks_path %>
