@@ -15,6 +15,15 @@
 
         <%= form.label :内容 %> <br>
         <%= form.text_area :content %> <br>
+
+        <%= form.label :expiration_date %><br>
+        <%= form.datetime_select :expiration_date %><br>
+
+        <%= form.label :status %><br>
+        <%= form.select :status, [["未着手","未着手"], ["着手中","着手中"], ["完了","完了"]], include_blank: "選択" %><br>
+
+        <%= form.label :priority %><br>
+        <%= form.select :priority, [["高","高"], ["中","中"], ["低","低"]], include_blank: "選択" %><br><br>
   </div>
   <%= form.submit "登録する"%>
 <% end %>
