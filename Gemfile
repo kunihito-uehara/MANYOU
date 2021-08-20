@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'bootstrap-sass'
-gem 'jquery-rails'
 gem 'kaminari'
 # ruby '2.6.5'
 #上herokuのためコメントアウト
