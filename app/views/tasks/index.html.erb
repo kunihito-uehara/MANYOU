@@ -2,9 +2,17 @@
 
 <h1>タスク一覧画面</h1>
 <%= form_with(model: @task, method: :get, local: true, ) do |form| %>
+  <%= form.label :'タスク名' %>
+  <%= form.text_field :search_title %>
+  <%= form.label :'ステータス' %>
+  <%= form.select :search_status, [["未着手","未着手"], ["着手中","着手中"], ["完了","完了"]], include_blank: "選択" %>
+  <%= form.submit '検索' , name: 'search' %>
 <% end %>
 
-<table>
+<%= link_to '終了期限で並べ替える', tasks_path(sort_expired: "true") %><br>
+<%= link_to '優先順位で並べ替える', tasks_path(sort_priority: "true") %><br><br>
+
+<table border="1">
   <tr>
     <th>タスク名</th>
     <th>内容</th>
@@ -12,7 +20,8 @@
     <th>ステータス</th>
     <th>優先順位</th>
   </tr>
-<% @tasks.each do |task| %>
+
+  <% @tasks.each do |task| %>
     <tr>
       <td class="title"><%= task.title %></td>
       <td class="content"><%= task.content %></td>
