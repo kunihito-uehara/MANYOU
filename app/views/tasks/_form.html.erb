@@ -9,12 +9,22 @@
       </ul>
     </div>
   <% end %>
+  
   <div>
         <%= form.label :タスク名 %> <br>
         <%= form.text_field :title %> <br>
 
         <%= form.label :内容 %> <br>
         <%= form.text_area :content %> <br>
+
+        <%= form.label :終了期限 %><br>
+        <%= form.date_select :expiration_date %><br>
+
+        <%= form.label :ステータス %><br>
+        <%= form.select :status, [["未着手","未着手"], ["着手中","着手中"], ["完了","完了"]], include_blank: "選択" %><br>
+
+        <%= form.label :優先順位 %><br>
+        <%= form.select :priority, [["高","高"], ["中","中"], ["低","低"]], include_blank: "選択" %><br><br>
   </div>
   <%= form.submit "登録する"%>
 <% end %>

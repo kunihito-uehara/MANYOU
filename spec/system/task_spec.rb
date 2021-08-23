@@ -25,9 +25,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         FactoryBot.create(:third_task)
         FactoryBot.create(:fourth_task)
         FactoryBot.create(:second_task, content: 'さしすせそ')
-
         visit tasks_path
-
         expect(page).to have_content 'かきくけこ'
         expect(page).to have_content 'さしすせそ'
         expect(page).to have_content 'second_task_content'
@@ -52,11 +50,12 @@ RSpec.describe 'タスク管理機能', type: :system do
 
   context 'タスクが作成日時の降順に並んでいる場合' do
     it '新しいタスクが一番上に表示される' do
-      # ここに実装する
       task = FactoryBot.create(:task, title: 'なにぬねの')
+      task2 = FactoryBot.create(:task, title: 'はまやらわ')
       visit tasks_path
-      task_list = all('.task_row')
-      expect(task_list[0]).to have_content 'なにぬねの'     
+      task_list = all('.title')
+      expect(task_list[1]).to have_content 'なにぬねの' 
+      expect(task_list[0]).to have_content 'はまやらわ'    
     end
   end
 end
