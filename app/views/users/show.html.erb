@@ -7,40 +7,10 @@
   <strong>メールアドレス：</strong>
   <%= @user.email %>
 </p>
-<%= link_to 'ユーザー情報編集', edit_user_path(@user) %>
+<%# <p>管理者権限：<%= @user.admin == true ? 'あり' : 'なし' %></p>
+<%# <% if @user.id==@current_user.id %>
+<%= link_to 'ユーザー編集', edit_user_path(@user) %>
 <hr>
 
 <button type="button" class="btn btn-default"><%= link_to '新規登録', new_task_path %></button><br>
 
-<%= link_to '終了期限で並べ替える', tasks_path(sort_expired: "true") %><br>
-<%= link_to '優先順位で並べ替える', tasks_path(sort_priority: "true") %><br>
-
-<h1><%= @user.name %>のタスク一覧</h1>
-<table border="1">
-  <tr>
-    <th>ユーザー名</th>
-    <th>タスク名</th>
-    <th>内容</th>
-    <th>終了期限</th>
-    <th>ステータス</th>
-    <th>優先順位</th>
-  </tr>
-  <% current_user.tasks.each do |task| %>
-    <tr class="tasks_list">
-      <td><%= task.user.name %></td>
-      <td><%= task.name %></td>
-      <td><%= task.description %></td>
-      <td class="expiration_date"><%= l(task.expiration_date, format: :short) %></td>
-      <td class="status"><%= task.status %></td>
-      <td class="priority"><%= task.priority %></td>
-      <td>
-        <% task.labels.each do |label| %>
-          <%= label.label_name %>
-        <% end %>
-      </td>
-      <td><%= link_to '詳細', task_path(task.id), class:"btn btn-primary" %></td>
-      <td><%= link_to "編集", edit_task_path(task.id), class:"btn btn-success" %></td>
-      <td><%= link_to '削除', task_path(task.id), method: :delete ,data: { confirm: '削除しますか？' }, class:"btn btn-danger" %></td>
-    </tr>
-  <% end %>
-</table>

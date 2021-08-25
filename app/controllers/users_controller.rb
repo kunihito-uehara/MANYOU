@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: [ :new, :create ]
-  # before_action :new_user_create, only: [ :new ]
-  # before_action :other_user, only: [ :show, :edit, :update, :destroy ]
-  # before_action :set_user, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_user, only: [ :show, :edit, :update, :destroy ]
+  before_action :new_user_create, only: [ :new ]
+  #before_action :other_user, only: [ :show, :edit, :update, :destroy ]
+  
 
   
   def new
