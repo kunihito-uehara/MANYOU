@@ -31,4 +31,5 @@
     <p><%= form.submit "登録する"%></p>
   </div>
 <% end %>
-<%= link_to 'プロフィール画面へ戻る', user_path(current_user.id) %>
+<%= link_to 'プロフィール画面へ戻る', user_path(current_user.id) %><br>
+<%= link_to '一覧へ戻る', tasks_path(current_user.id) %>

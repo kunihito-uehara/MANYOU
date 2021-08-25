@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :login_required, only: [ :new, :create ]
   before_action :set_user, only: [ :show, :edit, :update, :destroy ]
   before_action :new_user_create, only: [ :new ]
-  #before_action :other_user, only: [ :show, :edit, :update, :destroy ]
+  before_action :other_user, only: [ :show, :edit, :update, :destroy ]
   
 
   
@@ -53,14 +53,15 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-  # def new_user_create
-  #   redirect_to user_path(current_user.id), notice:"ログアウト後新規登録してください" if logged_in?
-  # end
 
-  # def other_user
-  #   unless current_user.id == params[:id].to_i
-  #     flash[:notice] = "権限がありません。"
-  #     redirect_to tasks_path
-  #   end
-  # end
+  def new_user_create
+    redirect_to user_path(current_user.id), notice:"ログアウト後新規登録してください" if logged_in?
+  end
+
+  def other_user
+    unless current_user.id == params[:id].to_i
+      flash[:notice] = "権限がありません。"
+      redirect_to tasks_path
+    end
+  end
 end
