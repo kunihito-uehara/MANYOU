@@ -1,9 +1,9 @@
 #describe「何の仕様についてなのか」（テスト対象）
 #context「状況・状態を分類」テスト内容
-#　　　it「期待する動作」
-# フォームに入力値を入力　⇨fill_in “フォーム名”, with: “入力値”
-# ボタンクリック　⇨click_button “ボタン”
-# セレクトボックス　⇨select   from→ID指定
+#it「期待する動作」
+# フォームに入力値を入力⇨fill_in “フォーム名”, with: “入力値”
+# ボタンクリック⇨click_button “ボタン”
+# セレクトボックス⇨select   from→ID指定
 
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do

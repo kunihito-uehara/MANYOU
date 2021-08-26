@@ -5,6 +5,8 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.all.includes(:tasks)
+    #N+1問題を解決するためには、取得したユーザとそれらに紐付く全てのタスクをあらかじめ取得する必要あり
+    #そのために使うのが includesメソッド
   end
 
   def show

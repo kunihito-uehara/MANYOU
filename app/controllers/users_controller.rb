@@ -4,8 +4,6 @@ class UsersController < ApplicationController
   before_action :new_user_create, only: [ :new ]
   before_action :other_user, only: [ :show, :edit, :update, :destroy ]
   
-
-  
   def new
     @user = User.new
   end

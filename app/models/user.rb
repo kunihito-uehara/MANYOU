@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :tasks, dependent: :destroy
+  has_many :tasks, dependent: :destroy #退会したユーザに紐づく全投稿が削除される。
   validates :name,  presence: true, uniqueness: true, length: { maximum: 30 }
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
