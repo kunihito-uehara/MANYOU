@@ -26,6 +26,7 @@ describe 'タスクモデル機能', type: :model do
   describe '検索機能' do
     let!(:task) { FactoryBot.create(:task, title: 'ファースト', expiration_date: '2022-01-01', status: '未着手', priority: '中') }
     let!(:second_task) { FactoryBot.create(:second_task, title: 'セカンド', expiration_date: '2022-01-02', status: '着手中', priority: '中') }
+    
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索キーワードを含むタスクが絞り込まれる" do
         expect(Task.search_title('ファースト')).to include(task)

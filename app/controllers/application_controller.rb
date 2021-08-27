@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
         redirect_to tasks_path, notice:"権限がありません"
       end
     else
-      redirect_to new_session_path, notice:"ログインしてください"
+      redirect_to new_session_path, notice:"ログインしろ"
     end
   end
 end

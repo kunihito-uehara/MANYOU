@@ -30,6 +30,8 @@
       <td class="expiration_date"><%= l(task.expiration_date, format: :short) %></td>
       <td class="status"><%= task.status %></td>
       <td class="priority"><%= task.priority %></td>
+      
+      
       <td><%= link_to '詳細', task_path(task.id), class:"btn btn-primary" %></td>
       <td><%= link_to "編集", edit_task_path(task.id), class:"btn btn-success" %></td>
       <td><%= link_to '削除', task_path(task.id), method: :delete ,data: { confirm: '削除しますか？' }, class:"btn btn-danger" %></td>

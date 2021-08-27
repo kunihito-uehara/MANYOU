@@ -7,7 +7,8 @@
   <strong>メールアドレス：</strong>
   <%= @user.email %>
 </p>
-<%= link_to 'ユーザー情報編集', edit_user_path(@user) %>
+<%= link_to 'ユーザー情報編集', edit_user_path(@user) %><br>
+<%= link_to '一覧へ戻る', tasks_path %>
 <hr>
 
 <button type="button" class="btn btn-default"><%= link_to '新規登録', new_task_path %></button><br>
@@ -38,5 +39,5 @@
       <td><%= link_to "編集", edit_task_path(task.id), class:"btn btn-success" %></td>
       <td><%= link_to '削除', task_path(task.id), method: :delete ,data: { confirm: '削除しますか？' }, class:"btn btn-danger" %></td>
     </tr>
-  </table>
 <% end %>
+</table>

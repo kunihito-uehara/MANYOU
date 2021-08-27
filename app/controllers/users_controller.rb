@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    #登録フォームに記入した後、ユーザーに登録とログインを強制
+    #登録後、ユーザーがログインページにリダイレクトされない
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
@@ -36,9 +38,9 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      redirect_to new_user_path, notice: "ユーザーを削除しました！"
+      redirect_to new_user_path, notice: "ユーザーを削除！"
     else
-      redirect_to admin_users_path, notice: "管理者が１人以上必要のため削除できません"
+      redirect_to admin_users_path, notice: "管理者が１人以上必要のため削除できません！！！"
     end
   end
 
@@ -58,7 +60,7 @@ class UsersController < ApplicationController
 
   def other_user
     unless current_user.id == params[:id].to_i
-      flash[:notice] = "権限がありません。"
+      flash[:notice] = "権限がありません！"
       redirect_to tasks_path
     end
   end

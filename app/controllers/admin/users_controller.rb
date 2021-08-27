@@ -29,7 +29,7 @@ class Admin::UsersController < ApplicationController
   end
   
   def update
-    @user.current_user = current_user
+    #@user.current_user = current_user
     if @user.update(user_params)
       redirect_to admin_user_path, notice: "ユーザーを更新しました"
     else
@@ -38,7 +38,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.current_user = current_user
+    #@user.current_user = current_user
     if @user.destroy
       redirect_to admin_users_path, notice: "ユーザーを削除しました"
     else
