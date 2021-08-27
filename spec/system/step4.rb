@@ -1,52 +1,31 @@
-#describe「何の仕様についてなのか」（テスト対象）
-#context「状況・状態を分類」テスト内容
-#it「期待する動作」
-# フォームに入力値を入力⇨fill_in “フォーム名”, with: “入力値”
-# ボタンクリック⇨click_button “ボタン”
-# セレクトボックス⇨select   from→ID指定
-
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-  describe '新規作成機能' do
-    context 'タスクを新規作成した場合' do
-      it '作成したタスクが表示される+ステータス変更' do
-      # visit new_task_path 
-      # fill_in "task[title]", with: 'あいうえお'
-      # fill_in "task[content]", with: 'かきくけこ'
-      #   select "2021", from: 'task[expiration_date(1i)]'
-      #   select "1月", from: 'task[expiration_date(2i)]'
-      #   select "2", from: 'task[expiration_date(3i)]'
-      #   select "未着手", from: 'task[status]'
-      #   select "高", from: 'task[priority]'
-      # click_on '登録する'
-      #FactoryBot.create(:task,:content,:expiration_date,:status,:priority)
+  #   factory :user
+  #     name { 'ユーザー1' }
+  #     email { 'user1@dic.com' }
+  #     password { '123456' }
+  #     password_confirmation { '123456' }
+  #     admin { false }
 
-      FactoryBot.create(:task)
-      FactoryBot.create(:second_task)
-      visit tasks_path
-      click_on '終了期限で並べ替える'
-      expect(page).to have_content 'ファースト'
-      expect(page).to have_content 'セカンド'
-
-        # expect(page).to have_content '新しいタスクを作成しました！'
-        # expect(page).to have_content 'あいうえお'
-        # expect(page).to have_content 'かきくけこ'
-        # expect(page).to have_content '1/2'
-        # expect(page).to have_content '未着手'
-        # expect(page).to have_content '高'
-        # expect(page).to have_content '並び替え'
-      end
+  #   factory :admin_user
+  #     name { 'アドミン1' }
+  #     email { 'admin1@dic.com' }
+  #     password { '123456' }
+  #     password_confirmation { '123456' }
+  #     admin { true }
+  before do
+    @user = FactoryBot.create(:user, name:'', email: '')
+    @admin_user = FactoryBot.create(:admin_user)
+    FactoryBot.create(:task, user: @user)
+    FactoryBot.create(:second_task, user: @user)
     end
-  end
 
   describe '一覧表示機能' do
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
         task= FactoryBot.create(:task, content: 'かきくけこ')
-        FactoryBot.create(:second_task)
         visit tasks_path
         expect(page).to have_content 'かきくけこ'
-        expect(page).to have_content 'セカンド'
       end
     end
   end
@@ -55,11 +34,9 @@ RSpec.describe 'タスク管理機能', type: :system do
     context '任意のタスク詳細画面に遷移した場合' do
       it '該当タスクの内容が表示される' do
         task = FactoryBot.create(:task, content: 'たちつてと')
-        task2 = FactoryBot.create(:task, content: 'かきくけこ')
         visit tasks_path
         visit task_path(task)
         expect(page).to have_content 'たちつてと'
-        expect(page).not_to have_content 'かきくけこ'
         end
     end
   end
@@ -74,8 +51,6 @@ RSpec.describe 'タスク管理機能', type: :system do
   end
   describe '検索機能' do
     before do
-      #FactoryBot.create(:task)
-      #FactoryBot.create(:second_task)
       FactoryBot.create(:task,title: '検索テスト')
       FactoryBot.create(:second_task, title: '検索テスト2')
       visit tasks_path

@@ -6,20 +6,24 @@ class TasksController < ApplicationController
     #pageとperメソッドがkaminariで定義されたメソッド
     #perメソッドの引数にどれだけのレコードが表示されたらページを増やすかを指定できる。
     if params[:sort_expired]
-      @tasks = Task.all.page(params[:page]).per(5).expired
+      #@tasks = Task.all.page(params[:page]).per(5).expired
+      @tasks = current_user.tasks.all.page(params[:page]).per(5).expired
+
     elsif params[:sort_priority]
-      @tasks = Task.all.page(params[:page]).per(5).priority
+      #@tasks = Task.all.page(params[:page]).per(5).priority
+      @tasks = current_user.tasks.all.page(params[:page]).per(5).priority
     else
-      @tasks = current_user.tasks.all       
-      @tasks = @tasks.page(params[:page]).per(5)     
+      @tasks = current_user.tasks.page(params[:page]).per(5).latest
+      #@tasks = current_user.tasks.all       
+      #@tasks = @tasks.page(params[:page]).per(5)     
     end
-    
-    if params[:search_title].present? && params[:search_status].present?
-      @tasks = Task.all.search_title(params[:search_title]).search_status(params[:search_status]).page(params[:page]).per(5)
-    elsif params[:search_title].present?
-      @tasks = Task.all.search_title(params[:search_title]).page(params[:page]).per(5)
+    if params[:search_name].present? && params[:search_status].present?
+      @tasks = current_user.tasks.search_title(params[:search_name]).search_status(params[:search_status]).page(params[:page]).per(5)
+    elsif params[:search_name].present?
+      @tasks = current_user.tasks.search_title(params[:search_name]).page(params[:page]).per(5)
     elsif params[:search_status].present?
-      @tasks = Task.all.search_status(params[:search_status]).page(params[:page]).per(5)
+      @tasks = current_user.tasks.search_status(params[:search_status]).page(params[:page]).per(5)
+    #  @tasks = Task.all.search_title(params[:search_title]).search_status(params[:search_status]).page(params[:page]).per(5)
     end
   end
 
