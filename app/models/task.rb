@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  belongs_to :user
   validates :content, :title, presence: true
   scope :latest, -> { order(created_at: :desc) }
   scope :expired, -> { order(expiration_date: :desc) }

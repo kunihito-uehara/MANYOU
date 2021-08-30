@@ -12,7 +12,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       click_on '登録する'
       expect(page).to have_content 'タイトル'
       expect(page).to have_content 'あいうえお'
-      # expectの結果が true ならテスト成功、false なら失敗として結果が出力される
+      # expectの結果が true ならテスト成功、false なら失敗として結果が出力されるaaaz
       end
     end
   end
