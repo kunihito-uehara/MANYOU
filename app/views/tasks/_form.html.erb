@@ -25,6 +25,9 @@
 
         <%= form.label :優先順位 %><br>
         <%= form.select :priority, [["高","高"], ["中","中"], ["低","低"]], include_blank: "選択" %><br><br>
-  </div>
-  <%= form.submit "登録する"%>
+        
+        <%#= form.collection_check_boxes(:label_ids, Label.all, :id, :label_name) %>
+
+        
+        <%= form.submit "登録する"%><br>
 <% end %>

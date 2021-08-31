@@ -1,5 +1,7 @@
 class Task < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true #belongs_toの外部キーのnilを許可
+  has_many :labelings, dependent: :destroy
+  has_many :labels, through: :labelings
   validates :content, :title, presence: true
   scope :latest, -> { order(created_at: :desc) }
   scope :expired, -> { order(expiration_date: :desc) }

@@ -1,0 +1,4 @@
+  # ラベル　has_many :labeling_tasks, through: :labelings, source: :task
+
+#ラベリング validates :label_id, presence: true
+  # validates :task_id, presence: true
