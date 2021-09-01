@@ -100,7 +100,6 @@ RSpec.describe 'ラベル機能', type: :system do
         click_on 'commit'
         visit tasks_path
         select 'ラベル', from: :label_id
-        binding.irb
         click_on '検索'
         click_on '編集'
         expect(page).to have_content 'ラベル1'
