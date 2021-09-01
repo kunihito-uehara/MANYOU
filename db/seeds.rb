@@ -14,3 +14,20 @@ User.create!(
     password: password, password_confirmation: password_confirmation,
     admin: false)
 end
+
+10.times do |n|
+  Label.create!(
+    label_name: "ラベル#{n + 1}"
+  )
+end
+
+10.times do |n|
+  Task.create!(
+    title: "task#{n + 1}",
+    content: "content#{n + 1}",
+    expiration_date: "2022-01-01",
+    status: "未着手",
+    priority: "低",
+    user_id: User.first.id + n
+  )
+end

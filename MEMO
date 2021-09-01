@@ -1,17 +1,4 @@
- user models
- 
-     def check_admin_presence
-    throw :abort if self.admin? && User.where(admin: true).count <= 1
-  end
+  # ラベル　has_many :labeling_tasks, through: :labelings, source: :task
 
-  before_destroy :check_admin_presence
-  def check_admin_presence_update
-    throw :abort if self.id == current_user.id && User.where(admin: true).count == 1
-  end
-
-  before_update :check_admin_presence_update
-  attr_accessor :current_user
-  
-  def edit_user_info
-    throw :abort if self.admin == false && self.id != self.current_user.id
-  end
+#ラベリング validates :label_id, presence: true
+  # validates :task_id, presence: true
