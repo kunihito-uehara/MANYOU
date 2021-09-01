@@ -4,8 +4,10 @@
 <%= form_with(model: @task, method: :get, local: true, ) do |form| %>
   <%= form.label :'タスク名' %>
   <%= form.text_field :search_title %>
+  
   <%= form.label :'ステータス' %>
   <%= form.select :search_status, [["未着手","未着手"], ["着手中","着手中"], ["完了","完了"]], include_blank: "選択" %>
+
   <%= form.label :'ラベル名' %>
   <%= form.select :label_id, Label.pluck(:label_name, :id), include_blank: true %>
   <%= form.submit '検索' , name: 'search' %>

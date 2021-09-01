@@ -1,9 +1,9 @@
-User.create!(
-  name: "uekuni", 
-  email: "uekuni@dic.com", 
-  password: "123456", 
-  password_confirmation: "123456",
-  admin: true)
+# User.create!(
+#   name: "uekuni", 
+#   email: "uekuni@dic.com", 
+#   password: "123456", 
+#   password_confirmation: "123456",
+#   admin: true)
 
 10.times do |n|
   name = Faker::Games::Pokemon.name

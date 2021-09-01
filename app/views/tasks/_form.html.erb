@@ -21,9 +21,8 @@
         <%= form.date_select :expiration_date %><br>
 
         <%= form.label :ステータス %><br>
-        <%#= form.select :status, [["未着手","未着手"], ["着手中","着手中"], ["完了","完了"]], include_blank: "選択" %><br>
-　　　　　<%= form.select :status, Task.statuses.keys %>
-
+        <%#= form.select :status, [["未着手","未着手"], ["着手中","着手中"], ["完了","完了"]], include_blank: "選択" %>
+　　　　　<%= form.select :status, Task.statuses.keys %><br>
         <%= form.label :優先順位 %><br>
         <%#= form.select :priority, [["高","高"], ["中","中"], ["低","低"]], include_blank: "選択" %>
         <%= form.select :priority, Task.priorities.keys %>
