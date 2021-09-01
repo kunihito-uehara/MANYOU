@@ -1,33 +1,47 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy]
-  
-    def index
+  def index
     #@tasks = Task.all.order(created_at: :desc)
     #pageとperメソッドがkaminariで定義されたメソッド
     #perメソッドの引数にどれだけのレコードが表示されたらページを増やすかを指定できる。
-    if params[:sort_expired]
-      #@tasks = Task.all.page(params[:page]).per(5).expired
-      @tasks = current_user.tasks.all.page(params[:page]).per(5).expired
 
-    elsif params[:sort_priority]
-      #@tasks = Task.all.page(params[:page]).per(5).priority
-      @tasks = current_user.tasks.all.page(params[:page]).per(5).priority
-    else
-      @tasks = current_user.tasks.page(params[:page]).per(5).latest
-      #@tasks = current_user.tasks.all       
-      #@tasks = @tasks.page(params[:page]).per(5)     
-    end
-    if params[:search_name].present? && params[:search_status].present?
-      @tasks = current_user.tasks.search_title(params[:search_name]).search_status(params[:search_status]).page(params[:page]).per(5)
-    elsif params[:search_name].present?
-      @tasks = current_user.tasks.search_title(params[:search_name]).page(params[:page]).per(5)
-    elsif params[:search_status].present?
-      @tasks = current_user.tasks.search_status(params[:search_status]).page(params[:page]).per(5)
-    #  @tasks = Task.all.search_title(params[:search_title]).search_status(params[:search_status]).page(params[:page]).per(5)
+    @tasks = current_user.tasks.latest
+
+    @tasks = @tasks.expired if params[:sort_expired]
+    @tasks = @tasks.priority if params[:sort_priority]
+    @tasks = @tasks.search_title(params[:search_name]) if params[:search_name]
+    @tasks = @tasks.search_status(params[:search_status]) if params[:search_status] && params[:search_status] != ""
+    @tasks = @tasks.search_labels(params[:label_id]) if params[:label_id]
+
+    @tasks = @tasks.page(params[:page]).per(5)
+
+
+    # if params[:sort_expired]
+    #   #@tasks = Task.all.page(params[:page]).per(5).expired
+    #   @tasks = current_user.tasks.all.page(params[:page]).per(5).expired
+
+    # elsif params[:sort_priority]
+    #   #@tasks = Task.all.page(params[:page]).per(5).priority
+    #   @tasks = current_user.tasks.all.page(params[:page]).per(5).priority
+    # else
+    #   @tasks = current_user.tasks.page(params[:page]).per(5).latest
+    #   #@tasks = current_user.tasks.all       
+    #   #@tasks = @tasks.page(params[:page]).per(5)     
+    # end
+    # if params[:search_name].present? && params[:search_status].present?
+    #   @tasks = current_user.tasks.search_title(params[:search_name]).search_status(params[:search_status]).page(params[:page]).per(5)
+    # elsif params[:search_name].present?
+    #   @tasks = current_user.tasks.search_title(params[:search_name]).page(params[:page]).per(5)
+    # elsif params[:search_status].present?
+    #   @tasks = current_user.tasks.search_status(params[:search_status]).page(params[:page]).per(5)
+    # #  @tasks = Task.all.search_title(params[:search_title]).search_status(params[:search_status]).page(params[:page]).per(5)
     
-    elsif params[:label_id].present?
-      @tasks = Task.joins(:labels).where(labels:{id: params[:label_id]}).page(params[:page])
-    end
+    # elsif params[:label_id].present?
+    #   @tasks = Task.joins(:labels).where(labels:{id: params[:label_id]}).page(params[:page])
+      #@tasks.joins(:labels)でlabelsテーブルを結合
+      #where(labels: { id: params[:label_id] })で、先ほど設定したセレクトボックスから送られてきた
+      #params[:label_id]と、idが一致するラベルのタスクを取得
+    # end
   end
 
     def show

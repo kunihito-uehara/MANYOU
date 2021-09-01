@@ -6,9 +6,11 @@
 <p>終了期限: <%= l(@task.expiration_date, format: :short) %></p>
 <p>ステータス: <%= @task.status %></p>
 <p>ラベル:</p>
+
   <% @task.labels.each do |label| %>
-    <%= label.label_name %>
+  <%= label.label_name %>
     <% end %>
+<br>
 
 <%= link_to '編集する', edit_task_path(@task) %> |
-<%= link_to '一覧へ戻る', tasks_path %>
+<%= link_to 'タスク一覧', tasks_path %>

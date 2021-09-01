@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_08_30_134331) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "expiration_date"
-    t.string "status"
+    t.integer "status", default: 0
     t.integer "priority", default: 0
     t.bigint "user_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
